@@ -3,7 +3,31 @@ extends layout
 block content
   .container
     .jumbotron
-      | Question Create page
-
+      form(method="post", action="#")
+        div.form-group
+          label(for="questionId") Create Question
+          textarea#questionId.form-control(name="question", placeholder="Question")
+      br
+      b
+        | Choices
+      .choiceTable
+        .choiceRow
+          .choiceNum a.
+          .choiceContent
+            textarea#choiceAId
+        .choiceRow
+          .choiceNum b.
+          .choiceContent
+            textarea#choiceBId
+        .choiceRow
+          .choiceNum c.
+          .choiceContent
+            textarea#choiceCId
+        .choiceRow
+          .choiceNum d.
+          .choiceContent
+            textarea#choiceDId
+      br
+      | &nbsp;
 block pagescript
   script(src='/javascripts/examadmin_quesCreate.js')

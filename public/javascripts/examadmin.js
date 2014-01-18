@@ -1,4 +1,5 @@
 
+
 function highlightMenu(menuItemId) {
 	//remove active from all menu ids
 	var menuItems = $("li[id^=menu_]");

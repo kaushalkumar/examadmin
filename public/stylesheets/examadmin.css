@@ -1,0 +1,30 @@
+.cke_editable
+{
+	font-size: 13px;
+	line-height: 1.6em;
+	background-color:white;
+	min-height:50px;
+	border: 1px solid #999;
+	vertical-align:top;
+}
+
+ol li {
+  margin: 1em 0;
+}
+
+.choiceNum{
+    width:5%;
+    float:left;
+}
+.choiceContent{
+    width:93%;
+    float:left;
+}
+.choiceRow{
+    margin:10px;
+    overflow:hidden;
+}
+.choiceTable{
+    float:left;
+    width:100%;
+}
