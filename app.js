@@ -60,6 +60,13 @@ app.get('/quesCreate', function(req, res){
   });
 });
 
+app.get('/examCreate', function(req, res){
+  questionprovider.getAllQuestions(function(error, questions){
+      res.render('examCreate', {
+            questions:questions
+        });
+  });
+});
 
 
 app.get('/', routes.index);

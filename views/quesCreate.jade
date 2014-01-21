@@ -3,30 +3,97 @@ extends layout
 block content
   .container
     .jumbotron
-      form(method="post", action="#")
+      form.form-horizontal(method="post", action="#")
+        div.form-group#questionGroupDivId
+          label.col-sm-2.control-label(for="questionId") Question
+          div.col-sm-10
+            textarea#questionId.form-control(name="question", placeholder="Question")
         div.form-group
-          label(for="questionId") Create Question
-          textarea#questionId.form-control(name="question", placeholder="Question")
-      br
-      b
-        | Choices
-      .choiceTable
-        .choiceRow
-          .choiceNum a.
-          .choiceContent
-            textarea#choiceAId
-        .choiceRow
-          .choiceNum b.
-          .choiceContent
-            textarea#choiceBId
-        .choiceRow
-          .choiceNum c.
-          .choiceContent
-            textarea#choiceCId
-        .choiceRow
-          .choiceNum d.
-          .choiceContent
-            textarea#choiceDId
+          label.col-sm-2.control-label Question Type
+          div.col-sm-10
+            .radio.radio-inline
+              label
+                input#singleselectradioId(type="radio", name="questionType", value="SingleSelect", onclick="showQuestionSection()")
+                | Single Select
+            .radio.radio-inline
+              label
+                input#singleselectradioId(type="radio", name="questionType", value="MultiSelect", onclick="showQuestionSection()")
+                | Multi Select
+            .radio.radio-inline
+              label
+                input#singleselectradioId(type="radio", name="questionType", value="TrueFalse", onclick="showQuestionSection()")
+                | True/False
+            .radio.radio-inline
+              label
+                input#singleselectradioId(type="radio", name="questionType", value="Descriptive", onclick="showQuestionSection()")
+                | Descriptive
+        div.form-group#singleMultiSelectChoicesGroupDivId(style="display:none")
+          label.col-sm-2.control-label Choices
+          div.col-sm-10
+            .choiceTable
+              .choiceRow
+                .choiceNum a.
+                .choiceContent
+                  textarea#choiceAId
+                .choiceAddDelete
+                  a(href='#' onclick="removeOption()")
+                    span.glyphicon.glyphicon-trash
+                  span.glyphicon.glyphicon-plus-sign
+              .choiceRow
+                .choiceNum b.
+                .choiceContent
+                  textarea#choiceBId
+                .choiceAddDelete
+                  span.glyphicon.glyphicon-trash
+                  span.glyphicon.glyphicon-plus-sign
+              .choiceRow
+                .choiceNum c.
+                .choiceContent
+                  textarea#choiceCId
+                .choiceAddDelete
+                  span.glyphicon.glyphicon-trash
+                  span.glyphicon.glyphicon-plus-sign
+              .choiceRow
+                .choiceNum d.
+                .choiceContent
+                  textarea#choiceDId
+                .choiceAddDelete
+                  span.glyphicon.glyphicon-trash
+                  span.glyphicon.glyphicon-plus-sign
+        div.form-group#trueFalseChoicesGroupDivId(style="display:none")
+          label.col-sm-2.control-label Choices
+          div.col-sm-10
+            .choiceTable
+              .choiceRow
+                .choiceNum a.
+                .choiceContent
+                  | True
+              .choiceRow
+                .choiceNum b.
+                .choiceContent
+                  | False
+        div.form-group#descriptiveChoicesGroupDivId(style="display:none")
+          label.col-sm-2.control-label Answer
+          div.col-sm-10
+            textarea#descriptiveChoiceId
+         div.form-group#singleSelectAnswerGroupDivId(style="display:none")
+          label.col-sm-2.control-label Answer
+          div.col-sm-10
+            select.form-control#answerId(name="trueFalseAnswer")
+              option(value="a") a
+              option(value="b") b
+        div.form-group#multiSelectAnswerGroupDivId(style="display:none")
+          label.col-sm-2.control-label Answer
+          div.col-sm-10
+            select.form-control#answerId(name="trueFalseAnswer")
+              option(value="a") a
+              option(value="b") b
+        div.form-group#trueFalseAnswerGroupDivId(style="display:none")
+          label.col-sm-2.control-label Answer
+          div.col-sm-10
+            select.form-control#answerId(name="trueFalseAnswer")
+              option(value="true") True
+              option(value="false") False
       br
       | &nbsp;
 block pagescript
