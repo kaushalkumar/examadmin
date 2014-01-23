@@ -30,46 +30,47 @@ block content
         div.form-group#singleMultiSelectChoicesGroupDivId(style="display:none")
           label.col-sm-2.control-label Choices
           div.col-sm-10
-            .choiceTable
-              .choiceRow
-                .choiceNum a.
+            .choiceTable#singleMultiSelectChoicesTableId
+              .choiceRow#singleMultiSelectChoiceRowId1
+                .choiceNum 1.
                 .choiceContent
-                  textarea#choiceAId
-                .choiceAddDelete
-                  a(href='#' onclick="removeOption()")
+                  textarea#choiceId1
+                .choiceOperation
+                  a(href='#' onclick="removeChoice('singleMultiSelectChoiceRowId1')")
                     span.glyphicon.glyphicon-trash
-                  span.glyphicon.glyphicon-plus-sign
-              .choiceRow
-                .choiceNum b.
+              .choiceRow#singleMultiSelectChoiceRowId2
+                .choiceNum 2.
                 .choiceContent
-                  textarea#choiceBId
-                .choiceAddDelete
-                  span.glyphicon.glyphicon-trash
-                  span.glyphicon.glyphicon-plus-sign
-              .choiceRow
-                .choiceNum c.
+                  textarea#choiceId2
+                .choiceOperation
+                  a(href='#' onclick="removeChoice('singleMultiSelectChoiceRowId2')")
+                    span.glyphicon.glyphicon-trash
+              .choiceRow#singleMultiSelectChoiceRowId3
+                .choiceNum 3.
                 .choiceContent
-                  textarea#choiceCId
-                .choiceAddDelete
-                  span.glyphicon.glyphicon-trash
-                  span.glyphicon.glyphicon-plus-sign
-              .choiceRow
-                .choiceNum d.
+                  textarea#choiceId3
+                .choiceOperation
+                  a(href='#' onclick="removeChoice('singleMultiSelectChoiceRowId3')")
+                    span.glyphicon.glyphicon-trash
+              .choiceRow#singleMultiSelectChoiceRowId4
+                .choiceNum 4.
                 .choiceContent
-                  textarea#choiceDId
-                .choiceAddDelete
-                  span.glyphicon.glyphicon-trash
-                  span.glyphicon.glyphicon-plus-sign
+                  textarea#choiceId4
+                .choiceOperation
+                  a(href='#' onclick="removeChoice('singleMultiSelectChoiceRowId4')")
+                    span.glyphicon.glyphicon-trash
+            a(href='#' onclick="addChoice()")
+              span.glyphicon.glyphicon-plus-sign
         div.form-group#trueFalseChoicesGroupDivId(style="display:none")
           label.col-sm-2.control-label Choices
           div.col-sm-10
             .choiceTable
               .choiceRow
-                .choiceNum a.
+                .choiceNum 1.
                 .choiceContent
                   | True
               .choiceRow
-                .choiceNum b.
+                .choiceNum 2.
                 .choiceContent
                   | False
         div.form-group#descriptiveChoicesGroupDivId(style="display:none")
@@ -79,15 +80,19 @@ block content
          div.form-group#singleSelectAnswerGroupDivId(style="display:none")
           label.col-sm-2.control-label Answer
           div.col-sm-10
-            select.form-control#answerId(name="trueFalseAnswer")
-              option(value="a") a
-              option(value="b") b
+            select.form-control#singleSelectAnswerId(name="singleSelectAnswer")
+              option(value="1") 1
+              option(value="2") 2
+              option(value="3") 3
+              option(value="4") 4
         div.form-group#multiSelectAnswerGroupDivId(style="display:none")
           label.col-sm-2.control-label Answer
           div.col-sm-10
-            select.form-control#answerId(name="trueFalseAnswer")
-              option(value="a") a
-              option(value="b") b
+            select.form-control#multiSelectAnswerId(name="multiSelectAnswer", multiple="multiple")
+              option(value="1") 1
+              option(value="2") 2
+              option(value="3") 3
+              option(value="4") 4
         div.form-group#trueFalseAnswerGroupDivId(style="display:none")
           label.col-sm-2.control-label Answer
           div.col-sm-10
@@ -98,3 +103,4 @@ block content
       | &nbsp;
 block pagescript
   script(src='/javascripts/examadmin_quesCreate.js')
+  script(src='javascripts/bootstrap-multiselect.js')
