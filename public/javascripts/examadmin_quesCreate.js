@@ -3,14 +3,11 @@ window.onload = function() {
 
 	CKEDITOR.disableAutoInline = true;
 	CKEDITOR.inline( 'questionId');
-	CKEDITOR.inline( 'choiceId1' );
-	CKEDITOR.inline( 'choiceId2' );
-	CKEDITOR.inline( 'choiceId3' );
-	CKEDITOR.inline( 'choiceId4' );
+
 	CKEDITOR.inline( 'descriptiveChoiceId' );
 
 }
-
+var choiceIdVal = 5;
 function showQuestionSection() {
 	
 	var questionType = $( 'input[name=questionType]:checked' ).val();
@@ -24,12 +21,22 @@ function showQuestionSection() {
 	$("#descriptiveChoicesGroupDivId").hide();
 	switch (questionType) { 
 		case 'SingleSelect': 
-			$("#singleMultiSelectChoicesGroupDivId").show()
-			$("#singleSelectAnswerGroupDivId").show()
+			$("#singleMultiSelectChoicesGroupDivId").show();
+			$("#singleSelectAnswerGroupDivId").show();
+			$('textarea.choice').each(function () {
+				try{
+					CKEDITOR.inline( this);
+				} catch(e){}
+			});
 			break;
 		case 'MultiSelect': 
 			$("#singleMultiSelectChoicesGroupDivId").show();
 			$("#multiSelectAnswerGroupDivId").show();
+			$('textarea.choice').each(function () {
+				try{
+					CKEDITOR.inline( this);
+				} catch(e){}
+			});
 			$("#multiSelectAnswerId").multiselect({ numberDisplayed: 10});
 			break;
 		case 'TrueFalse': 
@@ -63,6 +70,7 @@ function removeChoice(choiceId) {
 				choiceCurrVal = choiceCurrVal.substr(0,choiceCurrVal.length-1);
 				
 				$("div#"+this.id).children().filter(".choiceNum").text((choiceCurrVal-1)+".");
+
 			}
 		}
 		
@@ -70,6 +78,7 @@ function removeChoice(choiceId) {
 
 	/*remove the row*/
 	$("div").remove("#"+choiceId);
+
 
 	/*remove option for single or multi select*/
 	/*add option for single or multi select*/
@@ -83,23 +92,25 @@ function addChoice() {
 	//get nextId
 	var lastChoiceVal = $("div#singleMultiSelectChoicesTableId .choiceRow:last-child").children().filter(".choiceNum").text();
 	var nextId = lastChoiceVal.substr(0,lastChoiceVal.length-1)*1+1;//multiplyied by 1 to make it as integer
-	
-	var newChoiceElm = '<div class="choiceRow" id="singleMultiSelectChoiceRowId' + nextId + '" >' +
+	var newChoiceElm = '<div class="choiceRow" id="singleMultiSelectChoiceRowId' + choiceIdVal + '" >' +
 		'<div class = "choiceNum">' + nextId + '.' + '</div>' +
 		'<div class = "choiceContent">' + 
-			'<textarea id="choiceId' + nextId + '" style="display: none;"></textarea>' +
+			'<textarea class="choice" style="display: none;"></textarea>' +
 		'</div>' +
 		'<div class="choiceOperation">' +
-			'<a href="#" onclick="removeChoice(\'singleMultiSelectChoiceRowId' + nextId + '\')">' +
+			'<a href="#" onclick="removeChoice(\'singleMultiSelectChoiceRowId' + choiceIdVal + '\')">' +
 				'<span class="glyphicon glyphicon-trash"></span>' +
 			'</a>' +
 		'</div>' +
 	'</div>';
-	
+	choiceIdVal = choiceIdVal+1;
 	$(newChoiceElm).appendTo("div#singleMultiSelectChoicesTableId");
 	//add CKEditor
-	CKEDITOR.inline( 'choiceId'+nextId );
-
+	$('textarea.choice').each(function () {
+		try{
+			CKEDITOR.inline( this);
+		} catch(e){}
+	});
 
 	/*add option for single or multi select*/
 	modifyAnswerOptions();
